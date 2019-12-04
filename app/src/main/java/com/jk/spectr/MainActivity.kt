@@ -1,19 +1,22 @@
 package com.jk.spectr
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.jk.spectr.ui.main.MainFragment
+import android.view.Menu
+import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.main_activity.*
+
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commitNow()
-        }
+        setSupportActionBar(toolbar);
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean { // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
 }
