@@ -6,15 +6,14 @@
 
     <item
         android:id="@+id/menu_search"
-        android:title="Search"
-        android:iconTint="@android:color/white"
+        android:title="@string/search"
+        app:iconTint="@android:color/white"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/menu_sort"
-        android:title="Sort"
-        android:iconTint="@android:color/white"
-        android:icon="@drawable/ic_sort_by_alpha_black_24dp"
-        app:showAsAction="always" />
+        android:title="@string/sort"
+        android:icon="@drawable/ic_sort_by_alpha_white_24dp"
+        app:showAsAction="ifRoom" />
 </menu>

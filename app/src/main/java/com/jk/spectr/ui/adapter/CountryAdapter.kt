@@ -7,15 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.jk.spectr.R
 import com.jk.spectr.callbacks.OnItemClickListner
 import com.jk.spectr.data.Country
 import com.jk.spectr.databinding.ListItemBinding
-import com.squareup.picasso.Picasso
 import java.util.*
 
 
-class CountryAdapter( val items: ArrayList<Country>) :
+class CountryAdapter(val items: ArrayList<Country>) :
     RecyclerView.Adapter<CountryAdapter.ViewHolder>(),
     OnItemClickListner {
 
@@ -75,11 +75,14 @@ class CountryAdapter( val items: ArrayList<Country>) :
             with(binding) {
                 item = plist
 
-                Picasso.with(binding.root.context)
+                Glide
+                    .with(root)
                     .load(plist.logo)
-                    // .resize(32, 32)
-                    //   .centerCrop()
-                    .into(imgCompanyLogo)
+                    .centerCrop()
+                    //  .placeholder(R.drawable.loading_spinner)
+                    .into(imgCompanyLogo);
+
+
                 //Glide.with(binding.root).load(plist.logo).into(imgCompanyLogo);
                 itemClickListener = this@CountryAdapter
                 tvCompanyName.text = plist.company

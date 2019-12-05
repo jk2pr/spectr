@@ -2,6 +2,7 @@ package com.jk.spectr.ui.main
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jk.spectr.R
 import com.jk.spectr.data.Country
 import com.jk.spectr.databinding.FragmentCountryListBinding
+import kotlin.collections.ArrayList
 
 
 class CountryListFragment : Fragment() {
@@ -103,6 +105,29 @@ class CountryListFragment : Fragment() {
         if (item.itemId == R.id.menu_sort) {
             //Todo
 
+            //1. Creating the AlertDialog
+            AlertDialog.Builder(context!!).apply {
+
+
+                //2. Setting the title
+                setTitle("Sort By")
+
+                //3. Setting click handlers for each item of the list
+                val items = mutableListOf<String>()
+                items.add("Ascending")
+                items.add("Descending")
+                setItems(Array(items.size) { itemIndex -> items[itemIndex].toString() }) { dialog, which ->
+                    if (which == 0)
+                        mainViewModel.adapter.items.sortBy {
+                            it.company
+                        } else
+                        mainViewModel.adapter.items.sortByDescending {
+                            it.company
+                        }
+                    mainViewModel.adapter.notifyDataSetChanged()
+                }
+                show()
+            }
 
         }
 
