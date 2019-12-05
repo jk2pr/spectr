@@ -14,7 +14,8 @@ import com.jk.spectr.databinding.ListItemBinding
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class CountryAdapter(private val items: ArrayList<Country>) :
+
+class CountryAdapter( val items: ArrayList<Country>) :
     RecyclerView.Adapter<CountryAdapter.ViewHolder>(),
     OnItemClickListner {
 
@@ -61,6 +62,11 @@ class CountryAdapter(private val items: ArrayList<Country>) :
         holder.bind(items[position])
     }
 
+    fun setFilter(newList: List<Country>) {
+        items.clear()
+        items.addAll(newList)
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -71,8 +77,8 @@ class CountryAdapter(private val items: ArrayList<Country>) :
 
                 Picasso.with(binding.root.context)
                     .load(plist.logo)
-                   // .resize(32, 32)
-                 //   .centerCrop()
+                    // .resize(32, 32)
+                    //   .centerCrop()
                     .into(imgCompanyLogo)
                 //Glide.with(binding.root).load(plist.logo).into(imgCompanyLogo);
                 itemClickListener = this@CountryAdapter

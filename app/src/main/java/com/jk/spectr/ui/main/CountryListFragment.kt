@@ -19,6 +19,7 @@ class CountryListFragment : Fragment() {
 
     lateinit var binding: FragmentCountryListBinding
     lateinit var mainViewModel: MainViewModel
+    var finalData = mutableListOf<Country>()
 
 
     override fun onCreateView(
@@ -37,7 +38,9 @@ class CountryListFragment : Fragment() {
         value?.let {
             binding.progressBar.visibility = View.GONE
             binding.recyclerView.visibility = View.VISIBLE
-            mainViewModel.adapter.addItems(it)
+            finalData.clear()
+            finalData.addAll(it)
+            mainViewModel.adapter.addItems(finalData)
 
 
         }
@@ -48,6 +51,7 @@ class CountryListFragment : Fragment() {
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.model = mainViewModel
         mainViewModel.liveData.observe(this, changeObserver)
+        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,28 +69,41 @@ class CountryListFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        val search = menu.findItem(R.id.menu_sort)
+        val search = menu.findItem(R.id.menu_search)
         val searchView =
             search.actionView as SearchView
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
+        search(searchView);
+    }
+
+    private fun search(searchView: SearchView) {
+        searchView.setOnQueryTextListener(object :
+            SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
                 return false
             }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
+            override fun onQueryTextChange(newT: String): Boolean {
+                var newText = newT.trim()
+                newText = newText.toLowerCase()
+                val newList: ArrayList<Country> = ArrayList()
+                for (countries in finalData) {
+                    val company: String = countries.company.toLowerCase()
+                    if (company.contains(newText)) {
+                        newList.add(countries)
+                    }
+                }
+                mainViewModel.adapter.setFilter(newList)
                 return true
             }
-
         })
-
-        //search(searchView);
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_sort) {
             //Todo
+
+
         }
 
         return false
