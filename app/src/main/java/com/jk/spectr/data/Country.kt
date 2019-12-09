@@ -1,5 +1,9 @@
 package com.jk.spectr.data
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Country(
 
     val _id: String,
@@ -7,23 +11,32 @@ data class Country(
     val website: String,
     val logo: String,
     val about: String,
-    val members: List<Members>
+    val members: ArrayList<Members>,
+    var isSelected:Boolean,
+    var isFav:Boolean,
+    var isFollowing:Boolean
 
-) {
+) : Parcelable {
+    @Parcelize
     class Members(
         val _id: String,
-        val age: Int,
+        val age: String,
         val email: String,
         val phone: String,
         val name: Names
 
 
-    ) {
+    ) : Parcelable {
+        @Parcelize
         class Names(
-
             val first: String,
-            val second: String
-        )
+            val last: String
+
+        ) : Parcelable {
+
+
+            override fun toString(): String = "$first $last"
+        }
     }
 
 

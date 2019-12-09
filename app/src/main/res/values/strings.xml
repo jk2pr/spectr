@@ -3,4 +3,14 @@
     <string name="search_hint">Searcb</string>
     <string name="search">Search</string>
     <string name="sort">Sort</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="years">\u0020Year</string>
+    <string name="fav">Favorite</string>
+    <string name="follow">Follow</string>
+
+    <plurals name="scores">
+        <item quantity="one">%d Girl</item>
+        <item quantity="other">%d Girls</item>
+    </plurals>
 </resources>

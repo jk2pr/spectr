@@ -9,5 +9,14 @@
         android:id="@+id/mainFragment"
         android:name="com.jk.spectr.ui.main.CountryListFragment"
         android:label="main_fragment"
-        tools:layout="@layout/fragment_country_list" />
+        tools:layout="@layout/fragment_country_list" >
+        <action
+            android:id="@+id/action_mainFragment_to_memberFragment"
+            app:destination="@id/memberFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberFragment"
+        android:name="com.jk.spectr.MemberFragment"
+        android:label="fragment_member"
+        tools:layout="@layout/fragment_member_list" />
 </navigation>

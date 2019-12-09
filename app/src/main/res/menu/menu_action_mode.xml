@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_fav"
+        android:title="@string/fav"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_follow"
+        app:iconTint="@android:color/white"
+        android:icon="@drawable/ic_person_add_24px"
+        android:title="@string/follow"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -12,6 +12,7 @@
         <variable
             name="itemClickListener"
             type="com.jk.spectr.callbacks.OnItemClickListner" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -20,9 +21,8 @@
         android:layout_height="wrap_content"
         android:foreground="?android:attr/selectableItemBackground"
         android:onClick="@{(v)  -> itemClickListener.onItemClick(v,item)}"
-        app:cardElevation="1dp"
-        app:cardBackgroundColor="@android:color/background_light"
-        app:cardCornerRadius="1dp">
+        app:cardCornerRadius="1dp"
+        app:cardElevation="1dp">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -41,13 +41,16 @@
                 android:layout_marginTop="8dp"
                 android:src="@drawable/ic_launcher_background"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:profileImage="@{item.logo}" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_company_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
+                app:drawableEndCompat="@drawable/ic_favorite_black_24dp"
+                android:text="@{item.company}"
                 android:textColor="@color/colorAccent"
                 app:layout_constraintBottom_toBottomOf="@+id/img_company_logo"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -56,13 +59,13 @@
                 tools:text="Company Name" />
 
 
-
             <TextView
                 android:id="@+id/tv_company_description"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_marginTop="117dp"
+                android:text="@{item.about}"
                 android:textColor="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,14 +74,17 @@
 
             <TextView
                 android:id="@+id/tv_company_website"
-
                 android:layout_width="0dp"
+                android:gravity="end"
+
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:autoLink="web"
                 android:linksClickable="true"
+                android:text="@{item.website}"
                 android:textColor="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_company_description"
                 tools:text="Company Website" />
 
